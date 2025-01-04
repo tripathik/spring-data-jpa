@@ -2,9 +2,11 @@ package com.intelliguru.springdatajpa.controller;
 
 import com.intelliguru.springdatajpa.entity.Employee;
 import com.intelliguru.springdatajpa.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,8 +45,11 @@ public class EmployeeController {
         }
     }
     @PutMapping("/{employeeId}")
-    public ResponseEntity<?> updateEmployee(@PathVariable int employeeId, @RequestBody Employee employee){
+    public ResponseEntity<?> updateEmployee(@Valid @PathVariable int employeeId, @RequestBody Employee employee, BindingResult bindingResult){
         try {
+            if (bindingResult.hasErrors()) {
+                return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+            }
             employeeService.updateEmployeeById(employeeId, employee);
             return  new ResponseEntity<>("Employee details have been updated successfully!!", HttpStatus.NO_CONTENT);
         } catch (Exception e) {
@@ -70,8 +75,12 @@ public class EmployeeController {
         }
     }
     @PostMapping
-    public ResponseEntity<?> saveEmployee(@RequestBody Employee employee){
+    public ResponseEntity<?> saveEmployee(@Valid @RequestBody Employee employee){
         try {
+//            if (bindingResult.hasErrors()) {
+//                return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+//            }
+
             Employee savedEmployee = employeeService.saveEmployee(employee);
             return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
         } catch (Exception e) {
