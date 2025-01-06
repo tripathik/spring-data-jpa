@@ -2,13 +2,14 @@ package com.intelliguru.springdatajpa.controller;
 
 import com.intelliguru.springdatajpa.entity.Employee;
 import com.intelliguru.springdatajpa.service.EmployeeService;
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static com.intelliguru.springdatajpa.utils.constants.Constants.SOME_ERROR_OCCURRED;

@@ -29,12 +29,8 @@ public class RequestData implements Serializable {
     private String department;
     @NotBlank(message = "locale is required.")
     private String locale;
-    @NotBlank(message = "itemCount is required.")
     private int itemCount;
-    @NotBlank(message = "timestamp is required.")
     private Long timestamp;
-    @NotBlank(message = "requestEntity is required.")
     private RequestEntity requestEntity;
-    @NotBlank(message = "requestStatus is required.")
     private RequestStatus requestStatus;
 }
