@@ -3,6 +3,7 @@ package com.intelliguru.springdatajpa.controller;
 import com.intelliguru.springdatajpa.entity.Employee;
 import com.intelliguru.springdatajpa.service.EmployeeService;
 //import jakarta.validation.Valid;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import static com.intelliguru.springdatajpa.utils.constants.Constants.SOME_ERROR
 
 @RestController
 @RequestMapping("/employee")
+@Tag(name = "Employee API", description = "Read, Create, Update and Delete")
 public class EmployeeController {
     
     @Autowired
